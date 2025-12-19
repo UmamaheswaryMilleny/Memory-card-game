@@ -2,6 +2,7 @@ import GameHeader from "./components/GameHeader";
 import Card from "./components/Card";
 import WinMessage from "./components/WinMessage";
 import { useGameLogic } from "./hooks/useGameLogic";
+import { Toaster } from "react-hot-toast";
 
 const cardValues = [
   "🍎",
@@ -24,12 +25,13 @@ const cardValues = [
 
 function App() {
 
-  const {cards, score,moves,handleCardClick,initializeGame,isGameComplete}=useGameLogic(cardValues)
+  const {cards, score,moves,handleCardClick,initializeGame}=useGameLogic(cardValues)
 
   return (
     <div className="app">
+            <Toaster position="top-center" />
       <GameHeader score={score} moves={moves} onReset={initializeGame} />
-      {isGameComplete && <WinMessage moves={moves} />}
+   
 
       <div className="cards-grid">
         {cards.map((card) => (

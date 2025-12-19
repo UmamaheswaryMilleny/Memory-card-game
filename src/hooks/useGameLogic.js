@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import toast from "react-hot-toast";
 
 export const useGameLogic = (cardValues)=>{  
   const [cards, setCards] = useState([]);
@@ -108,6 +108,21 @@ export const useGameLogic = (cardValues)=>{
   };
 
   const isGameComplete = matchedCards.length === cardValues.length;
+
+useEffect(() => {
+  if (isGameComplete) {
+    toast.success(`You win the game in ${moves} moves!`, {
+      id: "game-win",
+      icon: "🏆",
+      style: {
+        background: "#E6C3A1",
+        color: "#7C2D12",
+        border: "2px solid #7C2D12",
+      },
+    });
+  }
+}, [isGameComplete, moves]);
+
 
   return {cards,score,moves,isGameComplete,initializeGame,handleCardClick}
 }
