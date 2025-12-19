@@ -7,7 +7,7 @@ export const useGameLogic = (cardValues)=>{
   const [matchedCards, setMatchedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [moves, setMoves] = useState(0);
-  const [isLocked, setIsLocked] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
 
   const shuffleArray = (array) => {
     const shuffled = [...array];
@@ -93,7 +93,7 @@ export const useGameLogic = (cardValues)=>{
             if (newFlippedCards.includes(c.id) || c.id === card.id) {
               return { ...c, isFlipped: false };
             } else {
-              return cardValues;
+              return c;
             }
           });
 
